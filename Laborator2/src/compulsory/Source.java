@@ -1,20 +1,16 @@
 package compulsory;
 
-public class Source {
+import java.util.Objects;
 
-    public enum SourceType {
-        WAREHOUSE, FACTORY;
-    }
+abstract class Source {
 
-    private String name;
-    private SourceType type;
-
+    public String name;
+    public String sourceType;
     public Source() {
     }
 
-    public Source(String name, SourceType type) {
+    public Source(String name) {
         this.name = name;
-        this.type = type;
     }
 
     public String getName() {
@@ -25,19 +21,23 @@ public class Source {
         this.name = name;
     }
 
-    public SourceType getType() {
-        return type;
-    }
-
-    public void setType(SourceType type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
         return "Source{" +
                 "name='" + name + '\'' +
-                ", type=" + type +
                 '}';
+    }
+//optional
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Source)) return false;
+        Source source = (Source) o;
+        return getName().equals(source.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }

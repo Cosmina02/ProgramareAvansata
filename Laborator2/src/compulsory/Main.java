@@ -5,15 +5,12 @@ public class Main {
     public static void main(String[] args) {
         //declaring the Sources and filling them with the information
         //then creating an array of sources
-        Source s1 = new Source();
-        Source s2 = new Source();
-        Source s3 = new Source();
+        Source s1 = new Factory();
+        Source s2 = new Warehouse();
+        Source s3 = new Warehouse();
         s1.setName("S1");
-        s1.setType(Source.SourceType.FACTORY);
         s2.setName("S2");
-        s2.setType(Source.SourceType.WAREHOUSE);
         s3.setName("S3");
-        s3.setType(Source.SourceType.WAREHOUSE);
         Source[] sources = new Source[]{s1, s2, s3};
 
         //declaring the destinations and filling them with the information
@@ -51,6 +48,9 @@ public class Main {
         pb.setCost(cost);
 
         System.out.println(pb.toString());
-
+        Solution s=new Solution(cost);
+        Algoritm al=new Algoritm();
+        al.solve(pb,s);
+        System.out.println("Costul total este: "+s.getTotalCost());
     }
 }
