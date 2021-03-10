@@ -3,6 +3,7 @@ package compulsory;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
@@ -38,24 +39,31 @@ public class Main {
         v6.setRank(1);
         v6.setName("Restaurant");
 
-
+        Visitable[] visitables={v1,v2,v3,v4,v5,v6};
+        Payable[] payables={v1,v2,v3,v6};
         List<Location> myList = new ArrayList<>();
         myList= Arrays.asList(v1,v2,v3,v4,v5,v6);
 
         City myCity = new City(myList,"Iasi");
-        System.out.println(myCity.toString());
+       // System.out.println(myCity.toString());
 
-        v1.setCost(v2,10);
-        v1.setCost(v3,50);
-        v2.setCost(v3,20);
-        v2.setCost(v4,20);
-        v2.setCost(v5,10);
-        v3.setCost(v4,20);
-        v4.setCost(v6,10);
-        v5.setCost(v4,30);
-        v5.setCost(v6,20);
+//        v1.setCost(v2,10);
+//        v1.setCost(v3,50);
+//        v2.setCost(v3,20);
+//        v2.setCost(v4,20);
+//        v2.setCost(v5,10);
+//        v3.setCost(v4,20);
+//        v4.setCost(v6,10);
+//        v5.setCost(v4,30);
+//        v5.setCost(v6,20);
+        myCity.displayVisitableNotPayable(visitables,payables);
 
-     //System.out.println(myCity.toString());
+        List<Location>preferences=new LinkedList<>();
+        preferences=Arrays.asList(v6,v2,v1,v4,v3,v5);
+        TravelPlan Plan=new TravelPlan(myCity,preferences);
+        System.out.println(Plan.toString());
+
+
 
     }
 

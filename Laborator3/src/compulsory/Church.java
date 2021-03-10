@@ -1,5 +1,6 @@
 package compulsory;
 
+import java.time.Duration;
 import java.time.LocalTime;
 
 public class Church extends Location implements Visitable{
@@ -24,5 +25,6 @@ public class Church extends Location implements Visitable{
     public LocalTime getClosingTime() {
         return closingTime;
     }
+
 
 }
