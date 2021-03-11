@@ -1,8 +1,6 @@
 package compulsory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class City {
     private List<Location> nodes;
@@ -33,41 +31,20 @@ public class City {
         nodes.add(node);
     }
 
-    void bubbleSort(Visitable[] arr)
-    {
-        int n = arr.length;
-        for (int i = 0; i < n-1; i++)
-            for (int j = 0; j < n-i-1; j++)
-                if (arr[j].getOpeningTime().compareTo(arr[j+1].getOpeningTime())>0)
-                {
-                    // swap arr[j+1] and arr[j]
-                   Visitable temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
-                }
-    }
     //optional
-    public void displayVisitableNotPayable(Visitable[] visitables,Payable[] payables){
-        boolean notPayable=true;
-        Visitable[] visitable=new Visitable[visitables.length- payables.length];
-        int t=0;
-        for(int i=0;i< visitables.length;i++) {
-            notPayable=true;
-            for (int j = 0; j < payables.length; j++)
-                if (visitables[i] == payables[j]) {
-                    notPayable = false;
-                    break;
-                }
-            if(notPayable)
-            {
-                visitable[t]=visitables[i];
-                t++;
+    public void displayVisitableNotPayable(){
+        List <Location>locations=new LinkedList<>();
+        for (Location node : nodes) {
+            if (node instanceof Visitable && !(node instanceof Payable)) {
+                locations.add(node);
             }
         }
-    bubbleSort(visitable);
-        for(int i=0;i< visitable.length;i++)
-            System.out.println(" "+visitable[i]);
-
+        Collections.sort(locations,
+                (Location::comparatorByOpeningHour));
+        System.out.println("Visitable but not payable locations: ");
+        for(int i=0;i<locations.size();i++){
+            System.out.println(locations.get(i));
+        }
 
     }
     @Override

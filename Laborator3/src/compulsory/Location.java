@@ -33,6 +33,12 @@ public abstract class Location
         cost.put(node, value);
     }
 
+    public static int comparatorByOpeningHour(Location a,Location b){
+        if(a instanceof Visitable && b instanceof Visitable)
+            return ((Visitable) a).getOpeningTime().compareTo(((Visitable) b).getOpeningTime());
+        return 0;
+    }
+
     @Override
     public String toString() {
         return "\nLocation{" +
