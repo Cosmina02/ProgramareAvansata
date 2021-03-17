@@ -5,6 +5,9 @@ public class School implements Comparable{
     private String name;
     private int capacity;
 
+    public School() {
+    }
+
     public School(String name) {
         this.name = name;
     }

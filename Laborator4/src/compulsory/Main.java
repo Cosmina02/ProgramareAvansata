@@ -1,18 +1,23 @@
 package compulsory;
 
+import com.github.javafaker.Faker;
+
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 
 public class Main {
     public static void main(String[] args) {
 
+        Faker faker = new Faker();
         // student objects using streams
-        var students = IntStream.rangeClosed(0, 3)
-                .mapToObj(i -> new Student("S" + i))
+        var students = IntStream.rangeClosed(0,3)
+                .mapToObj(i -> new Student(faker.name().fullName()))
                 .toArray(Student[]::new);
         // school objects using streams
-        var highschools = IntStream.rangeClosed(0, 2)
-                .mapToObj(i -> new School("H" + i))
+        var highschools = IntStream.rangeClosed(0,2)
+                .mapToObj(i -> new School(faker.university().name()))
                 .toArray(School[]::new);
 
         highschools[0].setCapacity(1);
@@ -34,7 +39,7 @@ public class Main {
         stdPrefMap.put(students[2], Arrays.asList(highschools[0], highschools[1]));
         stdPrefMap.put(students[3], Arrays.asList(highschools[0], highschools[2]));
 
-        Map<School, List<Student>> hscPrefMap = new HashMap<>();
+        Map<School, List<Student>> hscPrefMap = new LinkedHashMap<>();
         // h0
         List<Student> prefList0 = new ArrayList<>();
         prefList0.add(students[3]);
@@ -61,5 +66,21 @@ public class Main {
         hscPrefMap.put(highschools[2], prefList2);
 
         System.out.println(hscPrefMap.toString());
+
+        //Students that find acceptables some schools
+        List<School> target = Arrays.asList(highschools[0], highschools[2]);
+        List<Student> result = studentList.stream()
+                .filter(std -> stdPrefMap.get(std).containsAll(target))
+                .collect(Collectors.toList());
+        System.out.println("Students that find these schools acceptable: "+highschools[0].getName()+", "+ highschools[2].getName()+" are "+result);
+
+        // schools that have student x as a top preference
+        List<School> result2 =schoolList.stream()
+                .filter(hsc -> hscPrefMap.get(hsc).get(0).equals(students[0]))
+                .collect(Collectors.toList());
+
+        System.out.println("school"+schoolList);
+        System.out.println("top student"+result2);
+
     }
 }
