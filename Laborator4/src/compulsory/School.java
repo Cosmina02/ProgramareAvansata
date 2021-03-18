@@ -38,7 +38,10 @@ public class School implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return this.capacity - capacity;
+        if(this.name.equals(name))
+            return 1;
+        else
+            return 0;
     }
 }
 

@@ -75,12 +75,11 @@ public class Main {
         System.out.println("Students that find these schools acceptable: "+highschools[0].getName()+", "+ highschools[2].getName()+" are "+result);
 
         // schools that have student x as a top preference
-        List<School> result2 =schoolList.stream()
+        List<School> topStudent =schoolList.stream()
                 .filter(hsc -> hscPrefMap.get(hsc).get(0).equals(students[0]))
                 .collect(Collectors.toList());
-
-        System.out.println("school"+schoolList);
-        System.out.println("top student"+result2);
+        
+        System.out.println("top student"+topStudent);
 
     }
 }
