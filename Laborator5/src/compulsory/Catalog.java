@@ -16,7 +16,7 @@ public class Catalog implements Serializable {
 
     private String name;
     private String path;
-    private List<Item>items= new ArrayList<>();
+    public List<Item>items= new ArrayList<>();
 
     public String getName() {
         return name;
