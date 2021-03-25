@@ -12,22 +12,28 @@ import java.net.URISyntaxException;
 
 public class Shell {
     //this method checks which command you typed and then runs the apropriate command
-    public static void checkCommandType(String command,Catalog c,Movie m ,Song s) throws InvalidDataException, IOException, URISyntaxException, InvalidCommandException {
+    public static void checkCommandType(String command,Catalog c,Catalog cat,Movie m ,Song s) throws InvalidDataException, IOException, URISyntaxException, InvalidCommandException {
 
-        Catalog cat=new Catalog();
+
         switch (command){
-            case "add song" -> new AddCommand().add(c,s);
-            case "add movie" ->new AddCommand().add(c,m);
-            case "list" -> new ListCommand().list(c);
-            case "play" ->new PlayCommand().play(c,0);
-            case "load"->new LoadCommand().load(cat,"C:\\Users\\cosmi\\OneDrive\\Desktop\\in.txt");
-            case "save"->new SaveCommand().save(c);
+            case "c add song" -> new AddCommand().add(c,s);
+            case "c add movie" ->new AddCommand().add(c,m);
+            case "c list" -> new ListCommand().list(c);
+            case "c play" ->new PlayCommand().play(c,0);
+            case "c load"->new LoadCommand().load(c,"C:\\Users\\cosmi\\OneDrive\\Desktop\\in.txt");
+            case "c save"->new SaveCommand().save(c);
+            case "cat add song" -> new AddCommand().add(cat,s);
+            case "cat add movie" ->new AddCommand().add(cat,m);
+            case "cat list" -> new ListCommand().list(cat);
+            case "cat play" ->new PlayCommand().play(cat,0);
+            case "cat load"->new LoadCommand().load(cat,"C:\\Users\\cosmi\\OneDrive\\Desktop\\in.txt");
+            case "cat save"->new SaveCommand().save(cat);
             default->throw new InvalidCommandException();
         }
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in));
         String name = reader.readLine();
-        checkCommandType(name,c,m,s);
+        checkCommandType(name,c,cat,m,s);
 
 
     }
@@ -39,13 +45,14 @@ public class Shell {
 
         // Reading data using readLine
         String name = reader.readLine();
+        Catalog cat=new Catalog();
         Catalog c=new Catalog();
         c.setName("My catalog");
         c.setPath("C:\\Users\\cosmi\\OneDrive\\Desktop\\facultate\\sem2\\pa\\Laborator5\\out.txt");
         Movie m=new Movie("1","My movie","C:\\Users\\cosmi\\OneDrive\\Desktop\\facultate\\sem2\\tweb\\proiect", "Maria",2001);
         Song s=new Song("2","My song","https://www.youtube.com/watch?v=YnopHCL1Jk8","Ozone",2003);
         //calls the checkCommand function
-        checkCommandType(name,c,m,s);
+        checkCommandType(name,c,cat,m,s);
 
     }
 
