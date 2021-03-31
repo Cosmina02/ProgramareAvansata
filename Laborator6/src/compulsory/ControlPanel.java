@@ -3,9 +3,9 @@ package compulsory;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 import java.io.IOException;
@@ -41,14 +41,36 @@ public class ControlPanel extends JPanel {
         add(exitBtn);
     }
     private void save(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "PNG Images", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showSaveDialog(ControlPanel.this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " +
+                    chooser.getSelectedFile().getAbsolutePath());
+        }
+        String pathName=chooser.getSelectedFile().getAbsolutePath();
         try {
-            ImageIO.write(frame.canvas.image, "PNG", new File("C:\\Users\\cosmi\\OneDrive\\Desktop\\test.png"));
+            System.out.println("You chose to open this file: " +
+                    chooser.getSelectedFile().getPath());
+            ImageIO.write(frame.canvas.image,"png", new File(pathName));
         } catch (IOException ex) { System.err.println( ); }
     }
 
     private void load(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "PNG Images", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(ControlPanel.this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " +
+                    chooser.getSelectedFile().getAbsolutePath());
+        }
+        String pathName=chooser.getSelectedFile().getAbsolutePath();
 
-       frame.add(new JLabel(new ImageIcon("C:\\Users\\cosmi\\OneDrive\\Desktop\\Layer.jpg")),1);
+       frame.add(new JLabel(new ImageIcon(pathName)),1);
 
     }
 

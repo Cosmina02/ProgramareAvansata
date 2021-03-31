@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -13,18 +15,20 @@ public class DrawingPanel extends JPanel {
     final static int W = 800, H = 600;
     BufferedImage image; //the offscreen image
     Graphics2D graphics; //the "tools" needed to draw in the image
-
+   List<Shape> shapes=new ArrayList<>();
 
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
         createOffscreenImage();
         init();
+
     }
     private void createOffscreenImage() {
         image = new BufferedImage(W, H, BufferedImage.TYPE_INT_ARGB);
         graphics = image.createGraphics();
         graphics.setColor(Color.WHITE); //fill the image with white
         graphics.fillRect(0, 0, W, H);
+
     }
     private void init() {
         setPreferredSize(new Dimension(W, H)); //don’t use setSize. Why?
@@ -39,11 +43,28 @@ public class DrawingPanel extends JPanel {
 
     private void drawShape(int x, int y) {
         int radius; //generate a random number
-        radius = new Random().nextInt(20);
-        int sides = frame.configPanel.sidesField; //get the value from UI (in ConfigPanel)
-        Color color = Color.red; //create a transparent random Color.
+        radius = new Random().nextInt(40);
+        int sides = (int) frame.configPanel.sidesField.getValue(); //get the value from UI (in ConfigPanel)
+        Color color = (Color) frame.configPanel.colorCombo.getSelectedItem(); //create a transparent random Color.
+        int delete=(int)frame.shapePanel.shapeField.getValue();
+        if(frame.shapePanel.availableShapes.isSelectedIndex(0))
+        {
+            shapes.add(new RegularPolygon(x, y, radius, sides));
+        }
+        if(frame.shapePanel.availableShapes.isSelectedIndex(1)){
+            shapes.add(new NodeShape(x,y,radius));
+        }
         graphics.setColor(color);
-        graphics.fill(new RegularPolygon(x, y, radius, sides));
+        for (Shape shape:shapes) {
+            graphics.fill(shape);
+        }
+        if(delete!=0){
+            graphics.setColor(Color.WHITE);
+            graphics.fill(shapes.get(delete));
+            shapes.remove(delete);
+            frame.shapePanel.shapeField.setValue(0);
+        }
+
     }
 
     @Override
