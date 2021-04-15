@@ -8,7 +8,7 @@ public class Main {
         String data_to_add="('1','Movie1','23-01-2001',150,7.8)";
         Create c=new Create();
         Find f=new Find();
-        /*c.createMovie(dbconn,data_to_add);
+        c.createMovie(dbconn,data_to_add);
         data_to_add="('2','Movie2','23-06-2003',180,2.8)";
         c.createMovie(dbconn,data_to_add);
         data_to_add="('3','Movie3','10-01-2007',130,9.8)";
@@ -22,7 +22,7 @@ public class Main {
         data_to_add="('3','Gen3')";
         c.createGenre(dbconn,data_to_add);
         data_to_add="('4','Gen4')";
-        c.createGenre(dbconn,data_to_add);*/
+        c.createGenre(dbconn,data_to_add);
 
         f.findMovieById(dbconn,"3");
 
