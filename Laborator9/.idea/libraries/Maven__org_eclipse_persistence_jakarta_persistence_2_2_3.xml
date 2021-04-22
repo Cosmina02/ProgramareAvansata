@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.persistence:jakarta.persistence:2.2.3">
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/dbms" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/jakarta.persistence/2.2.3/jakarta.persistence-2.2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/jakarta.persistence/2.2.3/jakarta.persistence-2.2.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/jakarta.persistence/2.2.3/jakarta.persistence-2.2.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

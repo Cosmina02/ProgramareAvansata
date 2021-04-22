@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL" >
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <class>compulsory.Management</class>
+        <class>TabelEntity.MoviesEntity</class>
+        <class>TabelEntity.GenresEntity</class>
+        <class>TabelEntity.MovieGenEntity</class>
+
+        <properties>
+            <property name="eclipselink.jdbc.url"
+                      value="jdbc:sqlite:C:/Users/cosmi/OneDrive/Desktop/facultate/sem2/pa/Laborator9/dbms/database.db"/>
+            <property name="eclipselink.jdbc.driver" value="org.sqlite.JDBC"/>
+        </properties>
+    </persistence-unit>
+</persistence>
